@@ -66,20 +66,40 @@
       <div class="sub-title">お荷物情報</div>
         <div class="form-group">
           <label for="box">段ボールの個数</label>
-          <input type="text" id="box" name="box" th:field="*{box}" class="form-control" value="10"/>
+          
+          <!-- <select th:each="i : ${#numbers.sequence(0,99)} id="box" name="box" class="form-control" value="10"></select> -->
+          <select class="form-control">
+            <option id="box" name="box"  class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
+
+          </select>
         </div>
         <div class="form-group">
           <label for="bed">ベッドの個数</label>
-          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/>
+          <!-- <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/> -->
+          <select class="form-control">
+            <option id="bed" name="bed"  class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
+
+          </select>
+           
         </div>
         <div class="form-group">
           <label for="bicycle">自転車の個数</label>
-          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/>
+          <!-- <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/> -->
+
+          <select class="form-control">
+            <option id="bicycle" name="bicycle"  class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
+
+          </select>
         </div>
         <div class="form-group">
           <label for="washingMachine">洗濯機の個数</label>
-          <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
-                 value="1"/>
+          <!-- <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
+                 value="1"/> -->
+                 
+                 <select class="form-control">
+                  <option id="washingMachine" name="washingMachine" class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
+      
+                </select>
         </div>
         <div class="form-group">
           <label for="washingMachineInstallation">洗濯機の設置工事申し込み</label>
