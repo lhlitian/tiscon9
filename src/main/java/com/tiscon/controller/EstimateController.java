@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import com.tiscon.code.PackageType;
 
 /**
  * 引越し見積もりのコントローラークラス。
@@ -132,9 +133,22 @@ public class EstimateController {
         BeanUtils.copyProperties(userOrderForm, dto);
         Integer price = estimateService.getPrice(dto);
 
+        double pricePerMonth = 1;
+        if(userOrderForm.getMonth() == 3 || userOrderForm.getMonth() == 4)
+            pricePerMonth = 1.5;
+        else if(userOrderForm.getMonth() == 9)
+            pricePerMonth = 1.2;
+
+        double distance = estimateDAO.getDistance(dto.getOldPrefectureId(), dto.getNewPrefectureId());
+        int distanceInt = (int) Math.floor(distance);
+
+
+        
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-        model.addAttribute("userOrderForm", userOrderForm);
+        model.addAttribute("userOrderForm", userOrderForm); 
+        model.addAttribute("distance", distanceInt);
         model.addAttribute("price", price);
+        model.addAttribute("pricePerMonth", pricePerMonth);
         return "result";
     }
 
