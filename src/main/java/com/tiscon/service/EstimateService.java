@@ -86,9 +86,9 @@ public class EstimateService {
         // 箱に応じてトラックの種類が変わり、それに応じて料金が変わるためトラック料金を算出する。
         int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
 
-        int month = 
+        // int month = 
         // 季節係数を考慮する
-        int Pricepermonth = estimateDAO.getPricePermonth(month);
+        // int Pricepermonth = estimateDAO.getPricePermonth(month);
 
         // オプションサービスの料金を算出する。
         int priceForOptionalService = 0;
