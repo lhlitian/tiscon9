@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,9 @@ public class EstimateService {
         // 箱に応じてトラックの種類が変わり、それに応じて料金が変わるためトラック料金を算出する。
         int pricePerTruck = estimateDAO.getPricePerTruck(boxes);
 
+        // 季節係数を考慮する
+        int Pricepermonth = estimateDAO.getPricePermonth(month);
+
         // オプションサービスの料金を算出する。
         int priceForOptionalService = 0;
 
@@ -92,7 +96,7 @@ public class EstimateService {
             priceForOptionalService = estimateDAO.getPricePerOptionalService(OptionalServiceType.WASHING_MACHINE.getCode());
         }
 
-        return priceForDistance + pricePerTruck + priceForOptionalService;
+        return (priceForDistance + pricePerTruck)*n + priceForOptionalService;
     }
 
     /**

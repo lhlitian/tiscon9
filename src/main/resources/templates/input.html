@@ -76,8 +76,8 @@
 
       
        <!-- <select th:each="i : ${#numbers.sequence(1,12)} id="box" name="box" c lass="form-control" value="10"></select> -->
-       <select class="form-day">
-        <option id="box" name="box"  class="form-control" th:each="i : ${#numbers.sequence(1,12,1)}" th:value="${i}"  >[[${i}]]</option>
+       <select id="month" name="month"  class="form-day">
+        <option  class="form-control" th:each="i : ${#numbers.sequence(1,12,1)}" th:value="${i}" th:field="*{month}" >[[${i}]]</option>
 
       </select>  
       <label for="month">月</label>
