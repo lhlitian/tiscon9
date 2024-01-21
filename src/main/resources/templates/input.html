@@ -10,6 +10,17 @@
       else
          document.getElementById("passwordMatchInfo").innerHTML = "";
      }
+
+     function mergeTelFields() {
+      // 各telフィールドの値を取得
+      var tel1Value = document.getElementById('tel1').value;
+      var tel2Value = document.getElementById('tel2').value;
+      var tel3Value = document.getElementById('tel3').value;
+
+      // 1つのtelに値を結合してセット
+      var mergedTelValue = tel1Value + tel2Value + tel3Value;
+      document.getElementById('tel').value = mergedTelValue;
+    }
    </script>
 
 <head>
@@ -44,13 +55,17 @@
         <div class="form-group">
 
           <label for="tel">連絡先TEL<半角数字></label></br>
-          <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-tel" value="03-1234-5678"/>ー<input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-tel" value="03-1234-5678"/>ー<input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-tel" value="03-1234-5678"/>
+          <input type="tel" id="tel1" name="tel1"  class="form-tel" value=""/>
+          ー<input type="tel" id="tel2" name="tel2"  class="form-tel" value=""/>
+          ー<input type="tel" id="tel3" name="tel3"  class="form-tel" value=""/>
+
+          <input type="hidden" id="tel" name="tel" th:field="*{tel}"value=""/>
 
         </div>
         <div class="form-group">
           <label for="email">連絡先メールアドレス</label>
           <input type="text" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com"/>
-          <ul th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></ul>
+          
         </div>
 
         <div class="form-group">
@@ -135,7 +150,7 @@
       <div class="form-group">
         <div class="text-center">
           <button type="submit" name="backToTop" class="btn-back">TOPへ戻る</button>
-          <button type="submit" name="confirm" class="btn btn-primary">ご入力内容の確認へ</button>
+          <button type="submit" name="confirm" class="btn btn-primary" onclick="mergeTelFields()">ご入力内容の確認へ</button>
         </div>
       </div>
     </div>
