@@ -25,9 +25,9 @@
       入力内容をご確認ください。<br/>
       この内容でお見積りする場合は、「概算お見積もりをする」ボタンを押してください。
     </div>
-    <ul th:if="${#fields.hasErrors('all')}">
+    <!-- <ul th:if="${#fields.hasErrors('all')}">
       <li th:each="err : ${#fields.errors('all')}" th:text="${err}"></li>
-    </ul>
+    </ul> -->
     <div class="col-sm-12">
       <div class="sub-title">お客様情報</div>
       <table class="table table-bordered">
@@ -35,21 +35,22 @@
         <col span="2" style="background-color: #FFFFFF;">
         <tbody>
         <tr>
-          <th style="width: 40%">氏名</th>
+          <th style="width: 40%">氏名<div th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"></div></th>
           <td>
             <span th:text="*{customerName}" />
           </td>
           <input type="hidden" name="customerName" id="customerName" th:value="*{customerName}"/>
         </tr>
         <tr>
-          <th>連絡先TEL</th>
+          <th>連絡先TEL<div th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div></th>
           <td><span th:text="*{tel}"></span></td>
           <input type="hidden" name="tel" id="tel" th:value="*{tel}"/>
         </tr>
         <tr>
-          <th>連絡先メールアドレス</th>
+          <th>連絡先メールアドレス<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div></th>
           <td><span th:text="*{email}"></span></td>
           <input type="hidden" name="email" id="email" th:value="*{email}"/>
+          
         </tr>
       </tbody>
       </table>
@@ -68,7 +69,7 @@
           <input type="hidden" name="oldPrefectureId" id="oldPrefectureId" th:value="*{oldPrefectureId}"/>
         </tr>
         <tr>
-          <th>集荷元住所（市区町村以下）</th>
+          <th>集荷元住所（市区町村以下）<div th:if="${#fields.hasErrors('oldAddress')}" th:errors="*{oldAddress}"></div></th>
           <td><span th:text="*{oldAddress}"></span></td>
           <input type="hidden" name="oldAddress" id="oldAddress" th:value="*{oldAddress}"/>
         </tr>
@@ -80,7 +81,7 @@
           <input type="hidden" name="newPrefectureId" id="newPrefectureId" th:value="*{newPrefectureId}"/>
         </tr>
         <tr>
-          <th>お届け先住所（市区町村以下）</th>
+          <th>お届け先住所（市区町村以下）<div th:if="${#fields.hasErrors('newAddress')}" th:errors="*{newAddress}"></div></th>
           <td><span th:text="*{newAddress}"></span></td>
           <input type="hidden" name="newAddress" id="newAddress" th:value="*{newAddress}"/>
         </tr>
