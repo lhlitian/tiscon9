@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <script>
+    function checkPasswordMatch() {
+       var email = document.getElementById("email").value;
+       var confirmEmail = document.getElementById("confirmEmail").value;
+   
+       if (email != confirmEmail)
+         document.getElementById("passwordMatchInfo").innerHTML = "Passwords do not match!";
+      else
+         document.getElementById("passwordMatchInfo").innerHTML = "";
+     }
+   </script>
 
 <head>
   <title>お見積り情報入力</title>
@@ -31,13 +42,25 @@
           <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control" value="山田太郎"/>
         </div>
         <div class="form-group">
-          <label for="tel">連絡先TEL＜半角数字＞</label></br>
+
+          <label for="tel">連絡先TEL<半角数字></label></br>
           <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-tel" value="03-1234-5678"/>ー<input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-tel" value="03-1234-5678"/>ー<input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-tel" value="03-1234-5678"/>
+
         </div>
         <div class="form-group">
           <label for="email">連絡先メールアドレス</label>
           <input type="text" id="email" name="email" th:field="*{email}" class="form-control" value="test@test.com"/>
+          <ul th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></ul>
         </div>
+
+        <div class="form-group">
+          <label for="email">メールアドレス確認</label>
+         <!-- <input type="text" id="confirmEmail" name="confirmEmail" th:field="*{email}" class="form-control" value="test@test.com"/> -->
+          <input type="text" id="confirmEmail" name="confirmEmail"  class="form-control"  onkeyup="checkPasswordMatch();"/>
+        </div>
+
+        <div id="passwordMatchInfo"></div>
+
         <div class="sub-title">集荷元・お届け先</div>
         <div class="form-group">
           <label for="oldPrefectureId">集荷元住所（都道府県）</label>
@@ -53,6 +76,7 @@
         <div class="form-group">
           <label for="newPrefectureId">お届け先住所（都道府県）</label>
           <select id="newPrefectureId" name="newPrefectureId" class="form-control">
+            
             <option th:each="prefecture : ${prefectures}" th:value="${prefecture.prefectureId}" th:field="*{newPrefectureId}">[[${prefecture.prefectureName}]]</option>
           </select>
         </div>
@@ -68,38 +92,37 @@
           <label for="box">段ボールの個数</label>
           
           <!-- <select th:each="i : ${#numbers.sequence(0,99)} id="box" name="box" class="form-control" value="10"></select> -->
-          <select class="form-control">
-            <option id="box" name="box"  class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
-
-          </select>
+          <select id="box" name="box" class="form-control">
+            <option class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}" th:field="*{box}" >[[${i}]]</option>
+           </select>
         </div>
         <div class="form-group">
           <label for="bed">ベッドの個数</label>
           <!-- <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" value="3"/> -->
-          <select class="form-control">
-            <option id="bed" name="bed"  class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
-
-          </select>
+          
+          <select id="bed" name="bed"  class="form-control">
+            <option class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}" th:field="*{box}" >[[${i}]]</option>
+           </select>
            
         </div>
         <div class="form-group">
           <label for="bicycle">自転車の個数</label>
           <!-- <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" value="1"/> -->
 
-          <select class="form-control">
-            <option id="bicycle" name="bicycle"  class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
-
-          </select>
+          <select id="bicycle" name="bicycle" class="form-control">
+            <option class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}" th:field="*{box}" >[[${i}]]</option>
+           </select>
+          
         </div>
         <div class="form-group">
           <label for="washingMachine">洗濯機の個数</label>
           <!-- <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control"
                  value="1"/> -->
                  
-                 <select class="form-control">
-                  <option id="washingMachine" name="washingMachine" class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}"  >[[${i}]]</option>
-      
-                </select>
+                 
+                <select id="washingMachine" name="washingMachine"class="form-control">
+                  <option class="form-control" th:each="i : ${#numbers.sequence(0,99,1)}" th:value="${i}" th:field="*{box}" >[[${i}]]</option>
+                 </select>
         </div>
         <div class="form-group">
           <label for="washingMachineInstallation">洗濯機の設置工事申し込み</label>
