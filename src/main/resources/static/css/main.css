@@ -159,7 +159,11 @@ ul.label {
 }
 
 .form-control {
-    height: 2.8rem
+    height: 2.8rem;
+}
+.form-tel{
+    width:20rem;
+    height: 2.8rem;
 }
 
 th {
