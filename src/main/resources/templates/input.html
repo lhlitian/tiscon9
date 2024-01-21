@@ -107,11 +107,11 @@
       <div class="form-group">
         
          <!-- <select th:each="i : ${#numbers.sequence(2024,2034)} id="box" name="box" c lass="form-control" value="10"></select> -->
-         <select class="form-day">
-          <option id="box" name="box"  class="form-control" th:each="i : ${#numbers.sequence(2024,2034,1)}" th:value="${i}"  >[[${i}]]</option>
+         <select id="year" name="year" class="form-day">
+          <option   class="form-control" th:each="i : ${#numbers.sequence(2024,2034,1)}" th:value="${i}" th:field="*{year}" >[[${i}]]</option>
 
         </select>
-        <label for="yera">年</label>
+        <label for="year">年</label>
 
       
        <!-- <select th:each="i : ${#numbers.sequence(1,12)} id="box" name="box" c lass="form-control" value="10"></select> -->
@@ -123,8 +123,8 @@
 
       
    <!-- <select th:each="i : ${#numbers.sequence(1,31)} id="box" name="box" c lass="form-control" value="10"></select> -->
-   <select class="form-day">
-    <option id="box" name="box"  class="form-control" th:each="i : ${#numbers.sequence(1,31,1)}" th:value="${i}"  >[[${i}]]</option>
+   <select class="form-day"id="day" name="day">
+    <option   class="form-control" th:each="i : ${#numbers.sequence(1,31,1)}" th:value="${i}"th:field="*{day}"  >[[${i}]]</option>
 
   </select>
   <label for="day">日</label>

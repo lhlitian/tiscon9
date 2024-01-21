@@ -56,7 +56,15 @@ public class UserOrderForm {
     private boolean washingMachineInstallation;
 
     @NotNull
+    private int year;
+
+    @NotNull
     private int month;
+    
+    @NotNull
+    private int day;
+    
+
 
     public String getCustomerName() {
         return customerName;
@@ -160,5 +168,21 @@ public class UserOrderForm {
 
     public void setMonth(int month) {
         this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
     }
 }

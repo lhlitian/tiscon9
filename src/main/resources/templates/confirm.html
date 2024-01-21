@@ -85,6 +85,25 @@
           <td><span th:text="*{newAddress}"></span></td>
           <input type="hidden" name="newAddress" id="newAddress" th:value="*{newAddress}"/>
         </tr>
+
+        <tr>
+          <th>年<div th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div></th>
+          <td><span th:text="*{year}"></span></td>
+          <input type="hidden" name="year" id="year" th:value="*{year}"/>
+        </tr>
+
+        <tr>
+          <th>月<div th:if="${#fields.hasErrors('month')}" th:errors="*{month}"></div></th>
+          <td><span th:text="*{month}"></span></td>
+              <input type="hidden" name="month" id="month" th:value="*{month}"/>
+        </tr>
+        <tr>
+          <th>日<div th:if="${#fields.hasErrors('day')}" th:errors="*{day}"></div></th>
+          <td><span th:text="*{day}"></span></td>
+          <input type="hidden" name="day" id="day" th:value="*{day}"/>
+        </tr>
+        
+
         </tbody>
       </table>
     </div>
