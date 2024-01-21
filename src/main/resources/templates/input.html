@@ -116,7 +116,7 @@
         <!-- id="month" name="month" -->
       
        <!-- <select th:each="i : ${#numbers.sequence(1,12)} id="box" name="box" c lass="form-control" value="10"></select> -->
-       <select   class="form-day">
+       <select id="month" name="month"  class="form-day">
         <option  class="form-control" th:each="i : ${#numbers.sequence(1,12,1)}" th:value="${i}" th:field="*{month}" >[[${i}]]</option>
 
       </select>  
